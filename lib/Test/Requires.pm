@@ -3,6 +3,7 @@ use strict;
 use warnings;
 our $VERSION = '0.01';
 use base 'Test::Builder::Module';
+use 5.008005;
 
 our @QUEUE;
 
