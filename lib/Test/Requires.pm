@@ -1,29 +1,140 @@
 package Test::Requires;
-
 use strict;
 use warnings;
 our $VERSION = '0.01';
+use base 'Test::Builder::Module';
+
+our @QUEUE;
+
+sub import {
+    my $class = shift;
+    my $caller = caller(0);
+
+    # export methods
+    {
+        no strict 'refs';
+        *{"$caller\::test_requires"} = \&test_requires;
+    }
+
+    # enqueue the args
+    if (@_ == 1 && ref $_[0] && ref $_[0] eq 'HASH') {
+        while (my ($mod, $ver) = each %{$_[0]}) {
+            push @QUEUE, [$mod, $ver, $caller];
+        }
+    } else {
+        for my $mod (@_) {
+            push @QUEUE, [$mod, undef, $caller];
+        }
+    }
+
+    # dequeue one argument
+    if (my $e = shift @QUEUE) {
+        @_ = @$e;
+        goto \&test_requires;
+    }
+}
+
+sub test_requires {
+    my ( $mod, $ver, $caller ) = @_;
+    return if $mod eq __PACKAGE__;
+    if (@_ != 3) {
+        $caller = caller(0);
+    }
+
+    my $builder = __PACKAGE__->builder;
+
+    package DB;
+    local *DB::_test_requires_foo = sub {
+        $ver ||= '';
+        eval qq{package $caller; use $mod $ver}; ## no critic.
+        if (my $e = $@) {
+            my $skip_all = sub {
+                if (not defined $builder->has_plan) {
+                    $builder->skip_all(@_);
+                } elsif ($builder->has_plan eq 'no_plan') {
+                    $builder->skip(@_);
+                    if ( $builder->parent ) {
+                        die bless {} => 'Test::Builder::Exception';
+                    }
+                    exit 0;
+                } else {
+                    for (1..$builder->has_plan) {
+                        $builder->skip(@_);
+                    }
+                    if ( $builder->parent ) {
+                        die bless {} => 'Test::Builder::Exception';
+                    }
+                    exit 0;
+                }
+            };
+            if ( $e =~ /^Can't locate/ ) {
+                $skip_all->("Test requires module '$mod' but it's not found");
+            }
+            else {
+                $skip_all->("$e");
+            }
+        }
+
+        if (@QUEUE > 0) {
+            @_ = @{ shift @QUEUE };
+            goto \&Test::Requires::test_requires;
+        }
+    };
+
+    goto \&DB::_test_requires_foo;
+}
 
 1;
 __END__
 
 =head1 NAME
 
-Test::Requires -
+Test::Requires - Checks to see if the module can be loaded
 
 =head1 SYNOPSIS
 
-  use Test::Requires;
+    # in your Makefile.PL
+    use inc::Module::Install;
+    test_requires 'Test::Requires';
+
+    # in your test
+    use Test::More tests => 10;
+    use Test::Requires {
+        'HTTP::MobileAttribute' => 0.01, # skip all if HTTP::MobileAttribute doesn't installed
+    };
+    isa_ok HTTP::MobileAttribute->new, 'HTTP::MobileAttribute::NonMobile';
+
+    # or
+    use Test::More tests => 10;
+    use Test::Requires qw( 
+        HTTP::MobileAttribute
+    );
+    isa_ok HTTP::MobileAttribute->new, 'HTTP::MobileAttribute::NonMobile';
+
+    # or
+    use Test::More tests => 10;
+    use Test::Requires;
+    test_requires 'Some::Optional::Test::Required::Modules';
+    isa_ok HTTP::MobileAttribute->new, 'HTTP::MobileAttribute::NonMobile';
 
 =head1 DESCRIPTION
 
-Test::Requires is
+Test::Requires checks to see if the module can be loaded.
+
+If this fails rather than failing tests this B<skips all tests>.
 
 =head1 AUTHOR
 
 Tokuhiro Matsuno E<lt>tokuhirom @*(#RJKLFHFSDLJF gmail.comE<gt>
 
+=head1 THANKS TO
+
+    kazuho++ # some tricky stuff
+    miyagawa++ # original code from t/TestPlagger.pm
+
 =head1 SEE ALSO
+
+L<t/TestPlagger.pm>
 
 =head1 LICENSE
 
