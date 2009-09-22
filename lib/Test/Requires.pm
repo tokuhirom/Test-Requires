@@ -51,7 +51,7 @@ sub test_requires {
                 $builder->skip_all(@_);
             } elsif ($builder->has_plan eq 'no_plan') {
                 $builder->skip(@_);
-                if ( $builder->parent ) {
+                if ( $builder->can('parent') && $builder->parent ) {
                     die bless {} => 'Test::Builder::Exception';
                 }
                 exit 0;
@@ -59,7 +59,7 @@ sub test_requires {
                 for (1..$builder->has_plan) {
                     $builder->skip(@_);
                 }
-                if ( $builder->parent ) {
+                if ( $builder->can('parent') && $builder->parent ) {
                     die bless {} => 'Test::Builder::Exception';
                 }
                 exit 0;
