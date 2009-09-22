@@ -114,6 +114,7 @@ Tokuhiro Matsuno E<lt>tokuhirom @*(#RJKLFHFSDLJF gmail.comE<gt>
 
     kazuho++ # some tricky stuff
     miyagawa++ # original code from t/TestPlagger.pm
+    tomyhero++ # reported issue related older test::builder
 
 =head1 SEE ALSO
 
