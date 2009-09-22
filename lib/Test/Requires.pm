@@ -5,8 +5,6 @@ our $VERSION = '0.02';
 use base 'Test::Builder::Module';
 use 5.008000;
 
-our @QUEUE;
-
 sub import {
     my $class = shift;
     my $caller = caller(0);
@@ -17,20 +15,15 @@ sub import {
         *{"$caller\::test_requires"} = \&test_requires;
     }
 
-    # enqueue the args
+    # test arguments
     if (@_ == 1 && ref $_[0] && ref $_[0] eq 'HASH') {
         while (my ($mod, $ver) = each %{$_[0]}) {
-            push @QUEUE, [$mod, $ver, $caller];
+            test_requires($mod, $ver, $caller);
         }
     } else {
         for my $mod (@_) {
-            push @QUEUE, [$mod, undef, $caller];
+            test_requires($mod, undef, $caller);
         }
-    }
-
-    # dequeue one argument
-    for my $e (@QUEUE) {
-        test_requires(@$e);
     }
 }
 
