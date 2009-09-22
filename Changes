@@ -1,5 +1,10 @@
 Revision history for Perl extension Test::Requires
 
+0.03
+
+        - support older test::builder
+          (reported by tomyhero++)
+
 0.02
 
         - remove hacky stuff
