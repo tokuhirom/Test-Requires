@@ -1,5 +1,9 @@
 Revision history for Perl extension Test::Requires
 
+0.04
+
+        - no Test::Base (miyagawa)
+
 0.03
 
         - support older test::builder
