@@ -1,5 +1,11 @@
 Revision history for Perl extension Test::Requires
 
+0.05
+
+        - requires Test::More 0.61 or later, because Test::Builder::Module was
+          first appeared at 0.60_02.
+          (suggested by miyagawa++)
+
 0.04
 
         - no Test::Base (miyagawa)
