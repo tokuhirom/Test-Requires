@@ -1,5 +1,10 @@
 Revision history for Perl extension Test::Requires
 
+0.06
+
+        - support Perl 5.6.0 or later. Because Mouse need to support it.
+          (gfx)
+
 0.05
 
         - requires Test::More 0.61 or later, because Test::Builder::Module was
