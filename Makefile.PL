@@ -7,5 +7,4 @@ requires 'Test::More' => 0.61; # Test::Builder::Module was first appeared at 0.6
 tests 't/*.t';
 author_tests('xt');
 
-auto_include;
 WriteAll;
