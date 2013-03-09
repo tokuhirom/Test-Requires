@@ -1,5 +1,10 @@
 Revision history for Perl extension Test::Requires
 
+0.07
+
+        - document that use Test::Requires "5.010" works.
+          (tobyink)
+
 0.06
 
         - support Perl 5.6.0 or later. Because Mouse need to support it.

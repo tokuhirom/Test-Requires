@@ -106,6 +106,13 @@ Test::Requires checks to see if the module can be loaded.
 
 If this fails rather than failing tests this B<skips all tests>.
 
+Test::Requires can also be used to require a minimum version of Perl:
+
+    use Test::Requires "5.010";  # quoting is necessary!!
+    
+    # or
+    use Test::Requires "v5.10";
+
 =head1 AUTHOR
 
 Tokuhiro Matsuno E<lt>tokuhirom @*(#RJKLFHFSDLJF gmail.comE<gt>
@@ -115,6 +122,7 @@ Tokuhiro Matsuno E<lt>tokuhirom @*(#RJKLFHFSDLJF gmail.comE<gt>
     kazuho++ # some tricky stuff
     miyagawa++ # original code from t/TestPlagger.pm
     tomyhero++ # reported issue related older test::builder
+    tobyink++ # documented that Test::Requires "5.010" works
 
 =head1 SEE ALSO
 
