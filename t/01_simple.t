@@ -1,3 +1,4 @@
+BEGIN { $ENV{RELEASE_TESTING} = 0 };
 use strict;
 use warnings;
 use Test::More tests => 10;

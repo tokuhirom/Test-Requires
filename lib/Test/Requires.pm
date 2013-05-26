@@ -58,11 +58,17 @@ sub test_requires {
                 exit 0;
             }
         };
+        
+        my $msg = "$e";
         if ( $e =~ /^Can't locate/ ) {
-            $skip_all->("Test requires module '$mod' but it's not found");
+            $msg = "Test requires module '$mod' but it's not found";
+        }
+        
+        if ($ENV{RELEASE_TESTING}) {
+            __PACKAGE__->builder->BAIL_OUT($msg);
         }
         else {
-            $skip_all->("$e");
+            $skip_all->($msg);
         }
     }
 }
@@ -123,6 +129,11 @@ Tokuhiro Matsuno E<lt>tokuhirom @*(#RJKLFHFSDLJF gmail.comE<gt>
     miyagawa++ # original code from t/TestPlagger.pm
     tomyhero++ # reported issue related older test::builder
     tobyink++ # documented that Test::Requires "5.010" works
+
+=head1 ENVIRONMENT
+
+If the C<< RELEASE_TESTING >> environment variable is true, then instead
+of skipping tests, Test::Requires bails out.
 
 =head1 SEE ALSO
 
