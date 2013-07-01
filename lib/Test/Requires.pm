@@ -1,7 +1,7 @@
 package Test::Requires;
 use strict;
 use warnings;
-our $VERSION = '0.06';
+our $VERSION = '0.07';
 use base 'Test::Builder::Module';
 use 5.006000;
 
