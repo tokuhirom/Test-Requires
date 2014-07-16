@@ -65,7 +65,7 @@
          "web" : "https://github.com/tokuhirom/Test-Requires"
       }
    },
-   "version" : "0.07",
+   "version" : "0.08",
    "x_contributors" : [
       "Tatsuhiko Miyagawa <miyagawa@bulknews.net>",
       "gfx <gfuji@cpan.org>",

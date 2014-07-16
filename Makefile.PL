@@ -40,6 +40,6 @@ if ($ExtUtils::MakeMaker::VERSION >= 6.57_01) {
 WriteMakefile(
     NAME     => 'Test::Requires',
     DISTNAME => 'Test-Requires',
-    VERSION  => '0.07',
+    VERSION  => '0.08',
     %args,
 );
