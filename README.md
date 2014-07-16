@@ -32,19 +32,18 @@ Test::Requires - Checks to see if the module can be loaded
 
 Test::Requires checks to see if the module can be loaded.
 
-If this fails rather than failing tests this __skips all tests__.
+If this fails rather than failing tests this **skips all tests**.
 
 Test::Requires can also be used to require a minimum version of Perl:
 
     use Test::Requires "5.010";  # quoting is necessary!!
     
-
     # or
     use Test::Requires "v5.10";
 
 # AUTHOR
 
-Tokuhiro Matsuno <tokuhirom @\*(\#RJKLFHFSDLJF gmail.com>
+Tokuhiro Matsuno <tokuhirom @\*(#RJKLFHFSDLJF gmail.com>
 
 # THANKS TO
 
@@ -60,7 +59,7 @@ of skipping tests, Test::Requires bails out.
 
 # SEE ALSO
 
-["TestPlagger.pm" in t](http://search.cpan.org/perldoc?t#TestPlagger.pm)
+["TestPlagger.pm" in t](https://metacpan.org/pod/t#TestPlagger.pm)
 
 # LICENSE
 
