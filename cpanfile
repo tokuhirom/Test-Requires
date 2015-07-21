@@ -1,5 +1,5 @@
-requires 'perl', '5.008_001';
-requires 'Test::More', '0.61';
+requires 'perl', '5.006';
+requires 'Test::More', '0.47';
 requires 'Test::Builder::Module';
 
 on build => sub {
