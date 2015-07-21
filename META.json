@@ -65,7 +65,7 @@
          "web" : "https://github.com/tokuhirom/Test-Requires"
       }
    },
-   "version" : "0.09",
+   "version" : "0.10",
    "x_contributors" : [
       "gfx <gfuji@cpan.org>",
       "Toby Inkster <mail@tobyinkster.co.uk>",

@@ -12,7 +12,7 @@ use ExtUtils::MakeMaker 6.64;
 my %WriteMakefileArgs = (
     NAME     => 'Test::Requires',
     DISTNAME => 'Test-Requires',
-    VERSION  => '0.09',
+    VERSION  => '0.10',
     EXE_FILES => [glob('script/*'), glob('bin/*')],
     CONFIGURE_REQUIRES => {
   "ExtUtils::MakeMaker" => "6.64"
