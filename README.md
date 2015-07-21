@@ -43,7 +43,7 @@ Test::Requires can also be used to require a minimum version of Perl:
 
 # AUTHOR
 
-Tokuhiro Matsuno <tokuhirom @\*(#RJKLFHFSDLJF gmail.com>
+Tokuhiro Matsuno <tokuhirom AT gmail.com>
 
 # THANKS TO
 
@@ -56,10 +56,6 @@ Tokuhiro Matsuno <tokuhirom @\*(#RJKLFHFSDLJF gmail.com>
 
 If the `RELEASE_TESTING` environment variable is true, then instead
 of skipping tests, Test::Requires bails out.
-
-# SEE ALSO
-
-["TestPlagger.pm" in t](https://metacpan.org/pod/t#TestPlagger.pm)
 
 # LICENSE
 

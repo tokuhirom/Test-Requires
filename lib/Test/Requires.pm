@@ -121,7 +121,7 @@ Test::Requires can also be used to require a minimum version of Perl:
 
 =head1 AUTHOR
 
-Tokuhiro Matsuno E<lt>tokuhirom @*(#RJKLFHFSDLJF gmail.comE<gt>
+Tokuhiro Matsuno E<lt>tokuhirom AT gmail.comE<gt>
 
 =head1 THANKS TO
 
@@ -134,10 +134,6 @@ Tokuhiro Matsuno E<lt>tokuhirom @*(#RJKLFHFSDLJF gmail.comE<gt>
 
 If the C<< RELEASE_TESTING >> environment variable is true, then instead
 of skipping tests, Test::Requires bails out.
-
-=head1 SEE ALSO
-
-L<t/TestPlagger.pm>
 
 =head1 LICENSE
 
