@@ -4,7 +4,7 @@
       "Tokuhiro Matsuno <tokuhirom @*(#RJKLFHFSDLJF gmail.com>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Minilla/v2.4.1, CPAN::Meta::Converter version 2.150001",
+   "generated_by" : "Minilla/v2.4.2, CPAN::Meta::Converter version 2.150001",
    "license" : [
       "perl_5"
    ],
@@ -33,7 +33,7 @@
       },
       "configure" : {
          "requires" : {
-            "ExtUtils::MakeMaker" : "0"
+            "ExtUtils::MakeMaker" : "6.64"
          }
       },
       "develop" : {
@@ -48,8 +48,8 @@
       "runtime" : {
          "requires" : {
             "Test::Builder::Module" : "0",
-            "Test::More" : "0.61",
-            "perl" : "5.008001"
+            "Test::More" : "0.47",
+            "perl" : "5.006"
          }
       }
    },

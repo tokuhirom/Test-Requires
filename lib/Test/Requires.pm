@@ -3,7 +3,7 @@ use strict;
 use warnings;
 our $VERSION = '0.09';
 use base 'Test::Builder::Module';
-use 5.008001;
+use 5.006;
 
 sub import {
     my $class = shift;
