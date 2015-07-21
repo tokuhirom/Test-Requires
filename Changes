@@ -2,6 +2,10 @@ Revision history for Perl module Test::Requires
 
 {{$NEXT}}
 
+0.09 2015-07-21T04:01:50Z
+
+    - requires 5.8.1
+
 0.08 2014-07-16T00:21:22Z
 
     - Switch to EUMM.

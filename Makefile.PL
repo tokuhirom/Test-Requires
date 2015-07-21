@@ -9,37 +9,50 @@ use strict;
 use ExtUtils::MakeMaker;
 
 
-use File::Copy;
-
-print "cp META.json MYMETA.json\n";
-copy("META.json","MYMETA.json") or die "Copy failed(META.json): $!";
-
-if (-f 'META.yml') {
-    print "cp META.yml MYMETA.yml\n";
-    copy("META.yml","MYMETA.yml") or die "Copy failed(META.yml): $!";
-} else {
-    print "There is no META.yml... You may install this module from the repository...\n";
-}
-
-my %args;
-if ($ExtUtils::MakeMaker::VERSION >= 6.64) {
-    # *_REQUIRES was supported.
-
-    $args{CONFIGURE_REQUIRES} = {"ExtUtils::MakeMaker" => "6.64"};
-    $args{BUILD_REQUIRES}     = {"ExtUtils::MakeMaker" => "6.59"};
-    $args{TEST_REQUIRES}      = {};
-    $args{PREREQ_PM}          = {"Test::Builder::Module" => 0,"Test::More" => "0.61","perl" => "5.008_001"};
-} else {
-    $args{PREREQ_PM}          = {"ExtUtils::MakeMaker" => "6.64","Test::Builder::Module" => 0,"Test::More" => "0.61","perl" => "5.008_001"};
-}
-
-if ($ExtUtils::MakeMaker::VERSION >= 6.57_01) {
-    $args{NO_MYMETA} = 1;
-}
-
-WriteMakefile(
+my %WriteMakefileArgs = (
     NAME     => 'Test::Requires',
     DISTNAME => 'Test-Requires',
-    VERSION  => '0.08',
-    %args,
+    VERSION  => '0.09',
+    CONFIGURE_REQUIRES => {
+  "ExtUtils::MakeMaker" => 0
+}
+,
+    BUILD_REQUIRES     => {
+  "ExtUtils::MakeMaker" => "6.59"
+}
+,
+    TEST_REQUIRES      => {}
+,
+    PREREQ_PM          => {
+  "Test::Builder::Module" => 0,
+  "Test::More" => "0.61",
+  "perl" => "5.008001"
+}
+,
 );
+
+my $full_prereqs = {
+  "ExtUtils::MakeMaker" => "6.59",
+  "Test::Builder::Module" => 0,
+  "Test::More" => "0.61",
+  "perl" => "5.008001"
+}
+;
+
+unless (eval { ExtUtils::MakeMaker->VERSION(6.63_03) }) {
+    delete $WriteMakefileArgs{TEST_REQUIRES};
+    delete $WriteMakefileArgs{BUILD_REQUIRES};
+    $WriteMakefileArgs{PREREQ_PM} = $full_prereqs;
+}
+
+unless (eval { ExtUtils::MakeMaker->VERSION(6.52) }) {
+    delete $WriteMakefileArgs{CONFIGURE_REQUIRES};
+}
+
+unless (eval { ExtUtils::MakeMaker->VERSION(6.57_01) }) {
+    use File::Copy;
+    copy('META.yml', 'MYMETA.yml')   or warn "META.yml: $!";
+    copy('META.json', 'MYMETA.json') or warn "META.json: $!";
+}
+
+WriteMakefile(%WriteMakefileArgs);

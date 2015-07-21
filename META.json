@@ -4,7 +4,7 @@
       "Tokuhiro Matsuno <tokuhirom @*(#RJKLFHFSDLJF gmail.com>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Minilla/v2.1.0, CPAN::Meta::Converter version 2.141520",
+   "generated_by" : "Minilla/v2.4.1, CPAN::Meta::Converter version 2.150001",
    "license" : [
       "perl_5"
    ],
@@ -33,7 +33,7 @@
       },
       "configure" : {
          "requires" : {
-            "ExtUtils::MakeMaker" : "6.64"
+            "ExtUtils::MakeMaker" : "0"
          }
       },
       "develop" : {
@@ -49,7 +49,7 @@
          "requires" : {
             "Test::Builder::Module" : "0",
             "Test::More" : "0.61",
-            "perl" : "5.008_001"
+            "perl" : "5.008001"
          }
       }
    },
@@ -65,12 +65,12 @@
          "web" : "https://github.com/tokuhirom/Test-Requires"
       }
    },
-   "version" : "0.08",
+   "version" : "0.09",
    "x_contributors" : [
-      "Tatsuhiko Miyagawa <miyagawa@bulknews.net>",
       "gfx <gfuji@cpan.org>",
       "Toby Inkster <mail@tobyinkster.co.uk>",
       "Neil Bowers <neil@bowers.com>",
+      "Tatsuhiko Miyagawa <miyagawa@bulknews.net>",
       "Tokuhiro Matsuno <tokuhirom@gmail.com>"
    ]
 }
